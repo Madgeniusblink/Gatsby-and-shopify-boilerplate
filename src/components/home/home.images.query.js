@@ -20,7 +20,7 @@ import Img from "gatsby-image";
 export const squareImage = graphql`
     fragment squareImage on File {
         childImageSharp {
-            fixed(width: 300, height: 300) {
+            fixed(width: 300, height: 300, quality: 100) {
                 ...GatsbyImageSharpFixed
             }
         }
@@ -34,13 +34,13 @@ export const squareImage = graphql`
 
 export const HomePageImages = graphql`
     query {
-        image1: file(relativePath: { eq: "city-dawn-sunset-skyline.jpg" }) {
+        image1: file(relativePath: { eq: "images/city-dawn-sunset-skyline.jpg" }) {
             ...squareImage
         }
-        image2: file(relativePath: { eq: "dog-with-leash.jpg" }) {
+        image2: file(relativePath: { eq: "images/dog-with-leash.jpg" }) {
             ...squareImage
         }
-        image3: file(relativePath: { eq: "white-and-black-dalmation.jpg" }) {
+        image3: file(relativePath: { eq: "images/white-and-black-dalmation.jpg" }) {
             ...squareImage
         }
     }
@@ -48,14 +48,13 @@ export const HomePageImages = graphql`
 
 export const Image1 = () => {
     const data = useStaticQuery(HomePageImages);
-    return <Img fixed={data.image1.childImageSharp.fixed} />
-
-}
+    return <Img fixed={data.image1.childImageSharp.fixed} />;
+};
 export const Image2 = () => {
     const data = useStaticQuery(HomePageImages);
-    return <Img fixed={data.image2.childImageSharp.fixed} />
-}
+    return <Img fixed={data.image2.childImageSharp.fixed} />;
+};
 export const Image3 = () => {
     const data = useStaticQuery(HomePageImages);
-    return <Img fixed={data.image3.childImageSharp.fixed} />
-}
+    return <Img fixed={data.image3.childImageSharp.fixed} />;
+};
